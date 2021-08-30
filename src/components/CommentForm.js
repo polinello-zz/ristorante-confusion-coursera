@@ -51,6 +51,13 @@ class CommentForm extends React.Component {
   handleSubmit(values) {
     console.log("Current State is: " + JSON.stringify(values));
     alert("Current State is: " + JSON.stringify(values));
+    this.props.addComment(
+      this.props.dishId,
+      values.rating,
+      values.author,
+      values.comment
+    );
+
     // event.preventDefault();
   }
 
