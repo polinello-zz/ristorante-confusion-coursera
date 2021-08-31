@@ -9,7 +9,9 @@ import {
   Col,
   Label,
 } from "reactstrap";
-import { Control, LocalForm, Errors } from "react-redux-form";
+
+import { Control, Form, Errors, actions } from "react-redux-form";
+
 class CommentForm extends React.Component {
   constructor(props) {
     super(props);
@@ -51,15 +53,11 @@ class CommentForm extends React.Component {
   handleSubmit(values) {
     console.log("Current State is: " + JSON.stringify(values));
     alert("Current State is: " + JSON.stringify(values));
-    this.props.addComment(
-      this.props.dishId,
-      values.rating,
-      values.author,
-      values.comment
-    );
-
+    this.props.resetFeedbackForm();
     // event.preventDefault();
   }
+
+  // event.preventDefault();
 
   handleBlur = (field) => (evt) => {
     this.setState({
@@ -81,7 +79,10 @@ class CommentForm extends React.Component {
         <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
           <ModalHeader toggle={this.toggleModal}>Submit Comment</ModalHeader>
           <ModalBody>
-            <LocalForm onSubmit={(values) => this.handleSubmit(values)}>
+            <Form
+              model="feedback"
+              onSubmit={(values) => this.handleSubmit(values)}
+            >
               <Row className="form-group">
                 <Label htmlFor="rating" md={2}>
                   Rating
@@ -159,7 +160,7 @@ class CommentForm extends React.Component {
                   </Button>
                 </Col>
               </Row>
-            </LocalForm>
+            </Form>
           </ModalBody>
         </Modal>
       </div>

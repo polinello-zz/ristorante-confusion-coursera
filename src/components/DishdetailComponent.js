@@ -11,6 +11,7 @@ import {
 import { Link } from "react-router-dom";
 import CommentForm from "./CommentForm";
 import { Loading } from "./LoadingComponent";
+import { baseUrl } from "../shared/baseUrl";
 
 function RenderDish(props) {
   if (props.isLoading) {
@@ -32,7 +33,7 @@ function RenderDish(props) {
   } else if (props.dish != null)
     return (
       <Card key={props.dish.id}>
-        <CardImg top src={props.dish.image} alt={props.dish.name} />
+        <CardImg top src={baseUrl + props.dish.image} alt={props.dish.name} />
         <CardBody>
           <CardTitle>{props.dish.name}</CardTitle>
           <CardText>{props.dish.description}</CardText>
@@ -42,7 +43,7 @@ function RenderDish(props) {
   else return <div></div>;
 }
 
-function RenderComments({ comments, addComment, dishId }) {
+function RenderComments({ comments, addComment, dishId, resetFeedbackForm }) {
   if (comments != null)
     return (
       <>
@@ -62,7 +63,11 @@ function RenderComments({ comments, addComment, dishId }) {
             </>
           );
         })}
-        <CommentForm dishId={dishId} addComment={addComment} />
+        <CommentForm
+          dishId={dishId}
+          addComment={addComment}
+          resetFeedbackForm={resetFeedbackForm}
+        />
       </>
     );
   else return <div></div>;
@@ -92,6 +97,7 @@ const DishDetail = (props) => {
             comments={props.comments}
             addComment={props.addComment}
             dishId={props.dish.id}
+            resetFeedbackForm={props.resetFeedbackForm}
           />{" "}
         </div>
       </div>
