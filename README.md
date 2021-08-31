@@ -1,4 +1,6 @@
-# Getting Started with Create React App
+# Ristorante Confusion Coursera Project
+
+This project was created during a coursera react course.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

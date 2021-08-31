@@ -34,7 +34,6 @@ class CommentForm extends React.Component {
   }
 
   toggleModal() {
-    console.log("toggle modal...");
     this.setState({
       isModalOpen: !this.state.isModalOpen,
     });
@@ -51,7 +50,6 @@ class CommentForm extends React.Component {
   }
 
   handleSubmit(values) {
-    console.log("Current State is: " + JSON.stringify(values));
     this.props.postComment(
       this.props.dishId,
       values.rating,
