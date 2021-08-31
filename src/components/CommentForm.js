@@ -19,11 +19,11 @@ class CommentForm extends React.Component {
     this.state = {
       isModalOpen: false,
       rating: "",
-      name: "",
+      author: "",
       comment: "",
       touched: {
         rating: false,
-        name: false,
+        author: false,
         comment: false,
       },
     };
@@ -52,7 +52,13 @@ class CommentForm extends React.Component {
 
   handleSubmit(values) {
     console.log("Current State is: " + JSON.stringify(values));
-    alert("Current State is: " + JSON.stringify(values));
+    this.props.postComment(
+      this.props.dishId,
+      values.rating,
+      values.author,
+      values.comment
+    );
+
     this.props.resetFeedbackForm();
     // event.preventDefault();
   }
@@ -116,9 +122,9 @@ class CommentForm extends React.Component {
                 </Label>
                 <Col md={10}>
                   <Control.text
-                    model=".name"
-                    id="name"
-                    name="name"
+                    model=".author"
+                    id="author"
+                    name="author"
                     placeholder="Your Name"
                     className="form-control"
                     validators={{
@@ -129,7 +135,7 @@ class CommentForm extends React.Component {
                   />
                   <Errors
                     className="text-danger"
-                    model=".name"
+                    model=".author"
                     show="touched"
                     messages={{
                       required: "Required. ",
